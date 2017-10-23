@@ -11,7 +11,7 @@ SELECT \
   c.volume_count \
 FROM `bigquery-public-data.samples.trigrams` \
 JOIN UNNEST(cell) AS c \
-WHERE ngram = 'terabytes of data' \
+WHERE ngram = 'terabytes of data'
 
 ### Aggregate
 SELECT \
