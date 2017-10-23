@@ -44,7 +44,7 @@ WITH decomposed AS ( \
 
 SELECT LOWER(word), SUM(volume_count) AS total \
 FROM decomposed \
-WHERE REGEXP_CONTAINS(word, r"^\w*$") \
+WHERE REGEXP_CONTAINS(word, r'^\\w\*$'') \
 GROUP BY LOWER(word) \
 ORDER BY total DESC \
 LIMIT 50
@@ -52,9 +52,9 @@ LIMIT 50
 ## Wildcards
 SELECT \
   max, \
-  ROUND((max-32)*5/9,1) celsius, \
+  ROUND((max-32)\*5\/9,1) celsius, \
   year \
-FROM \`bigquery-public-data.noaa_gsod.gsod19*\` \
+FROM \`bigquery-public-data.noaa_gsod.gsod19\*\` \
 WHERE max != 9999.9 # code for missing data \
 AND _TABLE_SUFFIX BETWEEN '29' AND '40' \
 ORDER BY max DESC
@@ -62,8 +62,8 @@ ORDER BY max DESC
 ## Counting
 ### Exact
 SELECT COUNT(DISTINCT id) exact \
-FROM \`fh-bigquery.reddit_comments.20*\`
+FROM \`fh-bigquery.reddit_comments.20\*\`
 
 ### Approximate
 SELECT APPROX_COUNT_DISTINCT(id) approx \
-FROM \`fh-bigquery.reddit_comments.20*\`
+FROM \`fh-bigquery.reddit_comments.20\*\`
